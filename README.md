@@ -6,22 +6,22 @@ This project is Web API prototype project.
 Title: INTI Voting System
 
 Trees: 
-|--> Web API Client (React, Front-End Framework) \n
-| |--> index.js (Starter)  
-| |--> App.js (Link Router)
-| |--> /component (Additional child pages and front-end framework folder)
-| |--> /images (Page Image folder)
-| |.. Starter file controller
-|
-|--> Web API Server (Express Server, Back-End Framework)
-  |--> App.js (Server Starter)
-  |--> /Component (API Server Components)
-    |--> /includes (API Server Extension)
-    | |--> Connector.js (MongoDB Database connector)
-    | |.. (Other Database Schema Binder) 
-    |
-    |--> SessionMgr.js (Cookie Session Manager Controller API)
-    |--> Admins.js (Administrator Manager API)
-    |--> MakeVote.js (Making Vote Manager API)
-    |--> VoteResult.js (Vote Result Manager API) 
+|--> Web API Client (React, Front-End Framework) <br />
+| |--> index.js (Starter) <br />
+| |--> App.js (Link Router) <br />
+| |--> /component (Additional child pages and front-end framework folder) <br />
+| |--> /images (Page Image folder) <br />
+| |.. Starter file controller <br />
+| <br />
+|--> Web API Server (Express Server, Back-End Framework) <br />
+  |--> App.js (Server Starter) <br />
+  |--> /Component (API Server Components) <br />
+    |--> /includes (API Server Extension) <br />
+    | |--> Connector.js (MongoDB Database connector) <br />
+    | |.. (Other Database Schema Binder)  <br />
+    | <br />
+    |--> SessionMgr.js (Cookie Session Manager Controller API) <br />
+    |--> Admins.js (Administrator Manager API) <br />
+    |--> MakeVote.js (Making Vote Manager API) <br />
+    |--> VoteResult.js (Vote Result Manager API)  <br />
     
