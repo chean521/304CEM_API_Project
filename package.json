@@ -1,0 +1,19 @@
+{
+  "name": "webapi_project",
+  "version": "1.0.0",
+  "description": "Starter package for server and clients.",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client-install": "npm install --prefix ./webapi_alpha_1",
+    "start": "node ./webapi_server/App.js",
+    "server": "nodemon ./webapi_server/App.js",
+    "client": "npm start --prefix ./webapi_alpha_1",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Oscar Loh",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^4.0.1"
+  }
+}
