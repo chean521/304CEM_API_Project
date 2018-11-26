@@ -6,7 +6,7 @@ This project is Web API prototype project.
 Title: INTI Voting System
 
 Trees: 
-|--> Web API Client (React, Front-End Framework)
+|--> Web API Client (React, Front-End Framework) \n
 | |--> index.js (Starter)  
 | |--> App.js (Link Router)
 | |--> /component (Additional child pages and front-end framework folder)
