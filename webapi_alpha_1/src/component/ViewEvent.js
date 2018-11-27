@@ -47,7 +47,9 @@ class ViewEvent extends Component {
 
   GetEventList = () => {
     this.Spinner_list.style.display = 'initial';
-    Axios.get('/VoteResult/MakeVoteList')
+    Axios.get(
+      'https://webapi-oscar-server.herokuapp.com/VoteResult/MakeVoteList'
+    )
       .then(response => {
         var result = response.data;
         var rec_data = [];
@@ -111,7 +113,7 @@ class ViewEvent extends Component {
       $.ajax({
         method: 'POST',
         dataType: 'json',
-        url: '/AdminMgr/DeleteEvent',
+        url: 'https://webapi-oscar-server.herokuapp.com/AdminMgr/DeleteEvent',
         async: true,
         data: JSON.stringify({
           SelectedEvent: this.SelectedEvent

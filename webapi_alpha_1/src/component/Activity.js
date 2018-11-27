@@ -25,7 +25,9 @@ class Activity extends Component {
 
   ListAvailableVote = () => {
     this.Spinner_list.style.display = 'initial';
-    Axios.get('/VoteResult/MakeVoteList')
+    Axios.get(
+      'https://webapi-oscar-server.herokuapp.com/VoteResult/MakeVoteList'
+    )
       .then(res => {
         var raw = res.data;
         var tmp = [];
@@ -57,7 +59,7 @@ class Activity extends Component {
       data: {
         EventKey: id
       },
-      url: '/VoteResult/EventDetails',
+      url: 'https://webapi-oscar-server.herokuapp.com/VoteResult/EventDetails',
       statusCode: {
         304: e => {
           this.DataGetResp(e);
@@ -475,11 +477,14 @@ class Activity extends Component {
   SearchInputKeyPressed = sender => {
     if (sender.which === 13 && this.SearchBox.value.length == 24) {
       this.Spinner_list.style.display = 'initial';
-      Axios.get('/VoteResult/VoteListInDetails', {
-        params: {
-          EventKey: this.SearchBox.value
+      Axios.get(
+        'https://webapi-oscar-server.herokuapp.com/VoteResult/VoteListInDetails',
+        {
+          params: {
+            EventKey: this.SearchBox.value
+          }
         }
-      })
+      )
         .then(res => {
           this.SearchBox.blur();
           var raw = res.data;
@@ -523,12 +528,15 @@ class Activity extends Component {
         );
       } else {
         this.Spinner_list.style.display = 'initial';
-        Axios.get('/VoteResult/VoteListInDateRange', {
-          params: {
-            StartDate: Starts,
-            EndDate: Ends
+        Axios.get(
+          'https://webapi-oscar-server.herokuapp.com/VoteResult/VoteListInDateRange',
+          {
+            params: {
+              StartDate: Starts,
+              EndDate: Ends
+            }
           }
-        })
+        )
           .then(res => {
             var raw = res.data;
 
@@ -562,11 +570,14 @@ class Activity extends Component {
 
   EventTypeSelected = e => {
     this.Spinner_list.style.display = 'initial';
-    Axios.get('/VoteResult/VoteListInEvtType', {
-      params: {
-        EventType: this.Evt_Type.value
+    Axios.get(
+      'https://webapi-oscar-server.herokuapp.com/VoteResult/VoteListInEvtType',
+      {
+        params: {
+          EventType: this.Evt_Type.value
+        }
       }
-    })
+    )
       .then(res => {
         var raw = res.data;
 

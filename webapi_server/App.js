@@ -6,8 +6,6 @@ var session = require('express-session');
 var SessMgr = require('./component/SessionMgr');
 var PkgInfo = require('./package.json');
 
-const port = process.env.port || 5000;
-
 class Server {
   constructor() {
     const ServerHeader =
@@ -42,7 +40,7 @@ class Server {
         }
       })
     );
-    /*
+
     this._app.use(function(req, res, next) {
       res.header('Access-Control-Allow-Origin', '*');
       res.header(
@@ -51,12 +49,11 @@ class Server {
       );
       next();
     });
-    */
   }
 
   Start() {
-    console.log('[Express Server] Listening port 5000.');
-    this._app.listen(port);
+    console.log('[Express Server] Listening port.');
+    this._app.listen(process.env.PORT || 12755);
   }
 
   Listen() {
@@ -64,6 +61,9 @@ class Server {
     this._app.use('/MakeVote', TicketValid);
     this._app.use('/AdminMgr', Admins);
     this._app.use('/SessMgr', SessMgr);
+    this._app.get('/', (req, res) => {
+      res.end();
+    });
   }
 }
 

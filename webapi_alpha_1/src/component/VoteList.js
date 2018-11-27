@@ -23,7 +23,9 @@ class VoteList extends Component {
 
   GetVoteList = () => {
     this.Spinner_list.style.display = 'initial';
-    Axios.get('/VoteResult/MakeVoteList')
+    Axios.get(
+      'https://webapi-oscar-server.herokuapp.com/VoteResult/MakeVoteList'
+    )
       .then(res => {
         if (res == null) {
           this.setState({ rawdata: [] });

@@ -121,7 +121,7 @@ class EventForm extends Component {
         $.ajax({
           dataType: 'json',
           method: 'POST',
-          url: '/AdminMgr/SaveEvent',
+          url: 'https://webapi-oscar-server.herokuapp.com/AdminMgr/SaveEvent',
           async: true,
           data: JSON.stringify({
             EventData: EventData,

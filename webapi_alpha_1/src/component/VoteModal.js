@@ -131,9 +131,12 @@ class VoteModal extends Component {
       );
     } else {
       this.Spinner_list.style.display = 'initial';
-      Axios.get('/MakeVote/ValidateTicket', {
-        params: { EventKey: this.state.Selected_Event, TicketKey: VoteTicket }
-      })
+      Axios.get(
+        'https://webapi-oscar-server.herokuapp.com/MakeVote/ValidateTicket',
+        {
+          params: { EventKey: this.state.Selected_Event, TicketKey: VoteTicket }
+        }
+      )
         .then(res => {
           if (typeof res.data.error !== 'undefined') {
             alert('Server error!');
@@ -175,7 +178,7 @@ class VoteModal extends Component {
     $.ajax({
       dataType: 'json',
       method: 'GET',
-      url: '/MakeVote/CandidateList',
+      url: 'https://webapi-oscar-server.herokuapp.com/MakeVote/CandidateList',
       async: false,
       data: {
         EventKey: this.state.Selected_Event
@@ -205,7 +208,7 @@ class VoteModal extends Component {
     $.ajax({
       dataType: 'json',
       method: 'POST',
-      url: '/MakeVote/UpdateVote',
+      url: 'https://webapi-oscar-server.herokuapp.com/MakeVote/UpdateVote',
       async: true,
       data: JSON.stringify({
         EventKey: this.state.Selected_Event,

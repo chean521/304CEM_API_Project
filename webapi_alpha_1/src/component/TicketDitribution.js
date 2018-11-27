@@ -28,7 +28,9 @@ class TicketDistribution extends Component {
   WriteChart = () => {
     if (this.mix_chart !== null) this.mix_chart.destroy();
 
-    Axios.get('/AdminMgr/TicketDistribution')
+    Axios.get(
+      'https://webapi-oscar-server.herokuapp.com/AdminMgr/TicketDistribution'
+    )
       .then(response => {
         this.mix_chart = new Chart(this.StatChart, {
           type: 'bar',

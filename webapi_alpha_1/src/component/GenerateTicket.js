@@ -54,7 +54,8 @@ class GenerateTicket extends Component {
       $.ajax({
         dataType: 'json',
         method: 'POST',
-        url: '/AdminMgr/GenerateTicket',
+        url:
+          'https://webapi-oscar-server.herokuapp.com/AdminMgr/GenerateTicket',
         async: true,
         headers: {
           'Content-Type': 'application/json'
@@ -89,7 +90,9 @@ class GenerateTicket extends Component {
   };
 
   AvailableEvent = () => {
-    Axios.get('/VoteResult/VoteListAvailable')
+    Axios.get(
+      'https://webapi-oscar-server.herokuapp.com/VoteResult/VoteListAvailable'
+    )
       .then(response => {
         var list = [];
         var result = response.data.result;
