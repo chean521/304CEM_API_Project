@@ -14,7 +14,8 @@ class AdminMgr extends Component {
   constructor(prop) {
     super(prop);
     this.state = {
-      _interface: 0
+      _interface: 0,
+      bkp_authentication: false
     };
   }
 
@@ -25,17 +26,48 @@ class AdminMgr extends Component {
 
   checkSession = () => {
     Axios.get('https://webapi-oscar-server.herokuapp.com/SessMgr/GetVal', {
-      params: { SessKey: 'admin_isAuthenticated' }
+      params: { SessKey: 'admin_isAuthenticated' },
+      credentials: 'same-origin'
     })
       .then(res => {
-        if (res.data.data == null) {
-          this.setState({ _interface: 0 });
+        if (typeof res.data.data === 'undefined') {
+          if (this.state.bkp_authentication == false) {
+            this.setState({
+              _interface: 0,
+              bkp_authentication: this.state.bkp_authentication
+            });
+          } else {
+            this.setState({
+              _interface: 1,
+              bkp_authentication: this.state.bkp_authentication
+            });
+          }
         } else {
-          this.setState({ _interface: 1 });
+          if (res.data.data == null) {
+            this.setState({
+              _interface: 0,
+              bkp_authentication: this.state.bkp_authentication
+            });
+          } else {
+            this.setState({
+              _interface: 1,
+              bkp_authentication: this.state.bkp_authentication
+            });
+          }
         }
       })
       .catch(err => {
-        this.setState({ _interface: 0 });
+        if (this.state.bkp_authentication == false) {
+          this.setState({
+            _interface: 0,
+            bkp_authentication: this.state.bkp_authentication
+          });
+        } else {
+          this.setState({
+            _interface: 1,
+            bkp_authentication: this.state.bkp_authentication
+          });
+        }
       });
   };
 
@@ -59,21 +91,34 @@ class AdminMgr extends Component {
         .then(res => {
           if (res.data.res == false) {
             alert('Invalid admin password.');
+            this.setState({
+              _interface: this.state._interface,
+              bkp_authentication: false
+            });
           } else {
             Axios.get(
               'https://webapi-oscar-server.herokuapp.com/SessMgr/AddKey',
               {
-                params: { SessKey: 'admin_isAuthenticated', SessVal: 'yes' }
+                params: { SessKey: 'admin_isAuthenticated', SessVal: 'yes' },
+                credentials: 'same-origin'
               }
             ).then(res => {
               this.checkSession();
             });
           }
           this.Spinner.style.display = 'none';
+          this.setState({
+            _interface: this.state._interface,
+            bkp_authentication: true
+          });
         })
         .catch(err => {
           alert('Invalid admin password.');
           this.Spinner.style.display = 'none';
+          this.setState({
+            _interface: this.state._interface,
+            bkp_authentication: false
+          });
         });
     }
   };
@@ -84,8 +129,13 @@ class AdminMgr extends Component {
 
   LogOutClicked = e => {
     Axios.get('https://webapi-oscar-server.herokuapp.com/SessMgr/DelKey', {
-      params: { SessKey: 'admin_isAuthenticated' }
+      params: { SessKey: 'admin_isAuthenticated' },
+      credentials: 'same-origin'
     }).then(res => {
+      this.setState({
+        _interface: this.state._interface,
+        bkp_authentication: false
+      });
       this.checkSession();
     });
   };
